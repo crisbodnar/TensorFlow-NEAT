@@ -12,7 +12,7 @@
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
 
-from pytorch_neat.multi_env_eval import MultiEnvEvaluator
+from tf_neat.multi_env_eval import MultiEnvEvaluator
 
 
 class DummyEnv:

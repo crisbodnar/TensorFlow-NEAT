@@ -14,7 +14,7 @@
 
 import pytest
 
-from pytorch_neat.turning_t_maze import TurningTMazeEnv
+from tf_neat.turning_t_maze import TurningTMazeEnv
 
 
 def test_default_initialization():

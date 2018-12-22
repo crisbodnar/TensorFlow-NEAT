@@ -15,10 +15,10 @@
 import numpy as np
 import torch
 
-from pytorch_neat.activations import identity_activation as identity
-from pytorch_neat.adaptive_linear_net import AdaptiveLinearNet
-from pytorch_neat.aggregations import sum_aggregation as sum_ag
-from pytorch_neat.cppn import Leaf, Node
+from tf_neat.activations import identity_activation as identity
+from tf_neat.adaptive_linear_net import AdaptiveLinearNet
+from tf_neat.aggregations import sum_aggregation as sum_ag
+from tf_neat.cppn import Leaf, Node
 
 
 def slow_tanh(x):

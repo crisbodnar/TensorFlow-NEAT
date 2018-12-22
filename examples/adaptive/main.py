@@ -21,11 +21,11 @@ import neat
 # import torch
 import numpy as np
 
-from pytorch_neat import t_maze
-from pytorch_neat.activations import tanh_activation
-from pytorch_neat.adaptive_linear_net import AdaptiveLinearNet
-from pytorch_neat.multi_env_eval import MultiEnvEvaluator
-from pytorch_neat.neat_reporter import LogReporter
+from tf_neat import t_maze
+from tf_neat.activations import tanh_activation
+from tf_neat.adaptive_linear_net import AdaptiveLinearNet
+from tf_neat.multi_env_eval import MultiEnvEvaluator
+from tf_neat.neat_reporter import LogReporter
 
 batch_size = 4
 DEBUG = True

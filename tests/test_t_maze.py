@@ -14,7 +14,7 @@
 
 import pytest
 
-from pytorch_neat.t_maze import TMazeEnv
+from tf_neat.t_maze import TMazeEnv
 
 
 def test_default_initialization():

@@ -14,8 +14,8 @@
 
 import pytest
 
-from pytorch_neat.multi_env_eval import MultiEnvEvaluator
-from pytorch_neat.strict_t_maze import StrictTMazeEnv
+from tf_neat.multi_env_eval import MultiEnvEvaluator
+from tf_neat.strict_t_maze import StrictTMazeEnv
 
 
 def test_default_initialization():

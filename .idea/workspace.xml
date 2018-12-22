@@ -1,9 +1,223 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/neat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/adaptive/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/adaptive/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/simple/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/simple/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/adaptive_linear_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/adaptive_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/aggregations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/aggregations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/cppn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/dask_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/dask_helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/multi_env_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/multi_env_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/neat_reporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/neat_reporter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/recurrent_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/recurrent_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/strict_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/strict_t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytorch_neat/turning_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/turning_t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_adaptive_linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_adaptive_linear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cppn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_multi_env_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_multi_env_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_recurrent.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_recurrent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_strict_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_strict_t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_turning_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_turning_t_maze.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-200">
+              <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="recurrent_net.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+              <folding>
+                <element signature="e#612#624#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="neat.cfg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/simple/neat.cfg">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/examples/simple/main.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="neat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="neat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="neat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="neat" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="neat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="neat" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="simple" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="neat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="neat" type="462c0819:PsiDirectoryNode" />
+              <item name="tf_neat" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="" />
+      <created>1545411293908</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1545411293908</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/simple/neat.cfg">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding>
+            <element signature="e#612#624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -17,11 +17,13 @@ import os
 import click
 import gym
 import neat
+import tensorflow as tf
 
-from pytorch_neat.multi_env_eval import MultiEnvEvaluator
-from pytorch_neat.neat_reporter import LogReporter
-from pytorch_neat.recurrent_net import RecurrentNet
+from tf_neat.multi_env_eval import MultiEnvEvaluator
+from tf_neat.neat_reporter import LogReporter
+from tf_neat.recurrent_net import RecurrentNet
 
+tf.enable_eager_execution()
 max_env_steps = 200
 
 
