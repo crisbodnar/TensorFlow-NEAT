@@ -2,34 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/neat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neat.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/adaptive/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/adaptive/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/simple/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/simple/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/adaptive_linear_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/adaptive_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/aggregations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/aggregations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/cppn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/dask_helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/dask_helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/multi_env_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/multi_env_eval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/neat_reporter.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/neat_reporter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/recurrent_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/recurrent_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/strict_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/strict_t_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/t_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pytorch_neat/turning_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/turning_t_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_adaptive_linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_adaptive_linear.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_cppn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_multi_env_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_multi_env_eval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_recurrent.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_recurrent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_strict_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_strict_t_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_t_maze.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_turning_t_maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_turning_t_maze.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_neat/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_neat/recurrent_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/recurrent_net.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,20 +18,50 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+            <state relative-caret-position="340">
+              <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+              <folding>
+                <element signature="e#612#621#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recurrent_net.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="recurrent_net.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+            <state relative-caret-position="74">
+              <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
               <folding>
                 <element signature="e#612#624#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activations.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tf_neat/activations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="516">
+              <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="array_ops.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="1514" column="4" selection-start-line="1514" selection-start-column="4" selection-end-line="1514" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ops.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -83,6 +88,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>torch</find>
+      <find>make_net</find>
+      <find>eval_genomes</find>
+      <find>device</find>
+      <find>dense_from_coo</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -90,6 +104,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/examples/simple/main.py" />
+        <option value="$PROJECT_DIR$/tf_neat/recurrent_net.py" />
+        <option value="$PROJECT_DIR$/tf_neat/activations.py" />
       </list>
     </option>
   </component>
@@ -168,6 +184,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -175,7 +192,6 @@
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -202,20 +218,58 @@
     <entry file="file://$PROJECT_DIR$/examples/simple/neat.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/multi_env_eval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/neat/population.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="59" column="11" lean-forward="true" selection-start-line="58" selection-start-column="18" selection-end-line="59" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        <state relative-caret-position="340">
+          <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+          <folding>
+            <element signature="e#612#621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="1514" column="4" selection-start-line="1514" selection-start-column="4" selection-end-line="1514" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="74">
+          <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
           <folding>
             <element signature="e#612#624#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/activations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
         </state>
       </provider>
     </entry>

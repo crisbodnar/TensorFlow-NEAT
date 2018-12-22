@@ -14,8 +14,8 @@
 
 import torch
 import numpy as np
+import tensorflow as tf
 from .activations import sigmoid_activation
-
 
 # def sparse_mat(shape, conns):
 #     idxs, weights = conns
@@ -28,15 +28,18 @@ from .activations import sigmoid_activation
 #     return mat
 
 
-def dense_from_coo(shape, conns, dtype=torch.float64):
-    mat = torch.zeros(shape, dtype=dtype)
+def tran(tensor):
+    return tf.transpose(tensor)
+
+def dense_from_coo(shape, conns, dtype=tf.float64):
+    # TODO(Cris): Optimise the tensor assignment
+    mat = np.zeros(shape)
     idxs, weights = conns
     if len(idxs) == 0:
         return mat
     rows, cols = np.array(idxs).transpose()
-    mat[torch.tensor(rows), torch.tensor(cols)] = torch.tensor(
-        weights, dtype=dtype)
-    return mat
+    mat[rows, cols] = weights
+    return tf.convert_to_tensor(mat, dtype=dtype)
 
 
 class RecurrentNet():
@@ -49,7 +52,7 @@ class RecurrentNet():
                  use_current_activs=False,
                  activation=sigmoid_activation,
                  n_internal_steps=1,
-                 dtype=torch.float64):
+                 dtype=tf.float64):
 
         self.use_current_activs = use_current_activs
         self.activation = activation
@@ -75,23 +78,20 @@ class RecurrentNet():
             (n_outputs, n_outputs), output_to_output, dtype=dtype)
 
         if n_hidden > 0:
-            self.hidden_responses = torch.tensor(hidden_responses, dtype=dtype)
-            self.hidden_biases = torch.tensor(hidden_biases, dtype=dtype)
+            self.hidden_responses = tf.convert_to_tensor(hidden_responses, dtype=dtype)
+            self.hidden_biases = tf.convert_to_tensor(hidden_biases, dtype=dtype)
 
-        self.output_responses = torch.tensor(
-            output_responses, dtype=dtype)
-        self.output_biases = torch.tensor(output_biases, dtype=dtype)
+        self.output_responses = tf.convert_to_tensor(output_responses, dtype=dtype)
+        self.output_biases = tf.convert_to_tensor(output_biases, dtype=dtype)
 
         self.reset(batch_size)
 
     def reset(self, batch_size=1):
         if self.n_hidden > 0:
-            self.activs = torch.zeros(
-                batch_size, self.n_hidden, dtype=self.dtype)
+            self.activs = tf.zeros((batch_size, self.n_hidden), dtype=self.dtype)
         else:
             self.activs = None
-        self.outputs = torch.zeros(
-            batch_size, self.n_outputs, dtype=self.dtype)
+        self.outputs = tf.zeros((batch_size, self.n_outputs), dtype=self.dtype)
 
     def activate(self, inputs):
         '''
@@ -100,22 +100,21 @@ class RecurrentNet():
         returns: (batch_size, n_outputs)
         '''
         with torch.no_grad():
-            inputs = torch.tensor(inputs, dtype=self.dtype)
+            inputs = tf.convert_to_tensor(inputs, dtype=self.dtype)
             activs_for_output = self.activs
             if self.n_hidden > 0:
                 for _ in range(self.n_internal_steps):
                     self.activs = self.activation(self.hidden_responses * (
-                        self.input_to_hidden.mm(inputs.t()).t() +
-                        self.hidden_to_hidden.mm(self.activs.t()).t() +
-                        self.output_to_hidden.mm(self.outputs.t()).t()) +
+                        tran(self.input_to_hidden @ tran(inputs)) +
+                        tran(self.hidden_to_hidden @ tran(self.activs)) +
+                        tran(self.output_to_hidden @ tran(self.outputs))) +
                         self.hidden_biases)
                 if self.use_current_activs:
                     activs_for_output = self.activs
-            output_inputs = (self.input_to_output.mm(inputs.t()).t() +
-                             self.output_to_output.mm(self.outputs.t()).t())
+            output_inputs = (tran(self.input_to_output @ tran(inputs)) +
+                             tran(self.output_to_output @ tran(self.outputs)))
             if self.n_hidden > 0:
-                output_inputs += self.hidden_to_output.mm(
-                    activs_for_output.t()).t()
+                output_inputs += tran(self.hidden_to_output @ tran(activs_for_output))
             self.outputs = self.activation(
                 self.output_responses * output_inputs + self.output_biases)
         return self.outputs

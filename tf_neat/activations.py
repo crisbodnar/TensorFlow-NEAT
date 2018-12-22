@@ -12,24 +12,23 @@
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
 
-import torch
-import torch.nn.functional as F
+import tensorflow as tf
 
 
 def sigmoid_activation(x):
-    return torch.sigmoid(5 * x)
+    return tf.sigmoid(5 * x)
 
 
 def tanh_activation(x):
-    return torch.tanh(2.5 * x)
+    return tf.tanh(2.5 * x)
 
 
 def abs_activation(x):
-    return torch.abs(x)
+    return tf.abs(x)
 
 
 def gauss_activation(x):
-    return torch.exp(-5.0 * x**2)
+    return tf.exp(-5.0 * x**2)
 
 
 def identity_activation(x):
@@ -37,11 +36,11 @@ def identity_activation(x):
 
 
 def sin_activation(x):
-    return torch.sin(x)
+    return tf.sin(x)
 
 
 def relu_activation(x):
-    return F.relu(x)
+    return tf.nn.relu(x)
 
 
 str_to_activation = {
