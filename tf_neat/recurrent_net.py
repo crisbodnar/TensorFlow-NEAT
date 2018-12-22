@@ -12,7 +12,6 @@
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
 
-import torch
 import numpy as np
 import tensorflow as tf
 from .activations import sigmoid_activation
@@ -36,7 +35,7 @@ def dense_from_coo(shape, conns, dtype=tf.float64):
     mat = np.zeros(shape)
     idxs, weights = conns
     if len(idxs) == 0:
-        return mat
+        return tf.convert_to_tensor(mat)
     rows, cols = np.array(idxs).transpose()
     mat[rows, cols] = weights
     return tf.convert_to_tensor(mat, dtype=dtype)
@@ -99,24 +98,23 @@ class RecurrentNet():
 
         returns: (batch_size, n_outputs)
         '''
-        with torch.no_grad():
-            inputs = tf.convert_to_tensor(inputs, dtype=self.dtype)
-            activs_for_output = self.activs
-            if self.n_hidden > 0:
-                for _ in range(self.n_internal_steps):
-                    self.activs = self.activation(self.hidden_responses * (
-                        tran(self.input_to_hidden @ tran(inputs)) +
-                        tran(self.hidden_to_hidden @ tran(self.activs)) +
-                        tran(self.output_to_hidden @ tran(self.outputs))) +
-                        self.hidden_biases)
-                if self.use_current_activs:
-                    activs_for_output = self.activs
-            output_inputs = (tran(self.input_to_output @ tran(inputs)) +
-                             tran(self.output_to_output @ tran(self.outputs)))
-            if self.n_hidden > 0:
-                output_inputs += tran(self.hidden_to_output @ tran(activs_for_output))
-            self.outputs = self.activation(
-                self.output_responses * output_inputs + self.output_biases)
+        inputs = tf.convert_to_tensor(inputs, dtype=self.dtype)
+        activs_for_output = self.activs
+        if self.n_hidden > 0:
+            for _ in range(self.n_internal_steps):
+                self.activs = self.activation(self.hidden_responses * (
+                    tran(self.input_to_hidden @ tran(inputs)) +
+                    tran(self.hidden_to_hidden @ tran(self.activs)) +
+                    tran(self.output_to_hidden @ tran(self.outputs))) +
+                    self.hidden_biases)
+            if self.use_current_activs:
+                activs_for_output = self.activs
+        output_inputs = (tran(self.input_to_output @ tran(inputs)) +
+                         tran(self.output_to_output @ tran(self.outputs)))
+        if self.n_hidden > 0:
+            output_inputs += tran(self.hidden_to_output @ tran(activs_for_output))
+        self.outputs = self.activation(
+            self.output_responses * output_inputs + self.output_biases)
         return self.outputs
 
     @staticmethod

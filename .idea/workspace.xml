@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/examples/simple/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/simple/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf_neat/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tf_neat/recurrent_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/recurrent_net.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,11 +26,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="recurrent_net.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="recurrent_net.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+            <state relative-caret-position="213">
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+              <folding>
+                <element signature="e#612#630#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adaptive_linear_net.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1075">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#612#624#0" expanded="true" />
               </folding>
@@ -39,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activations.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activations.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/activations.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="516">
@@ -90,11 +101,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>torch</find>
       <find>make_net</find>
       <find>eval_genomes</find>
       <find>device</find>
       <find>dense_from_coo</find>
+      <find>torch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,8 +115,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/examples/simple/main.py" />
-        <option value="$PROJECT_DIR$/tf_neat/recurrent_net.py" />
         <option value="$PROJECT_DIR$/tf_neat/activations.py" />
+        <option value="$PROJECT_DIR$/tf_neat/recurrent_net.py" />
       </list>
     </option>
   </component>
@@ -256,13 +267,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/activations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="114" column="34" lean-forward="true" selection-start-line="114" selection-start-column="34" selection-end-line="114" selection-end-column="34" />
+        <state relative-caret-position="409">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
           <folding>
-            <element signature="e#612#624#0" expanded="true" />
+            <element signature="e#612#630#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/multi_env_eval.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/neat/population.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="59" column="11" lean-forward="true" selection-start-line="58" selection-start-column="18" selection-end-line="59" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+          <folding>
+            <element signature="e#612#621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="301" column="6" selection-start-line="301" selection-start-column="6" selection-end-line="301" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="1514" column="4" selection-start-line="1514" selection-start-column="4" selection-end-line="1514" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -270,6 +334,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1075">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#612#624#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+          <folding>
+            <element signature="e#612#630#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
