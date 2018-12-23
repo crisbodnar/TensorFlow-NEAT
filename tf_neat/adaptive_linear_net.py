@@ -13,6 +13,7 @@
 #     limitations under the License.
 
 import torch
+import tensorflow as tf
 
 from .activations import identity_activation, tanh_activation
 from .cppn import clamp_weights_, create_cppn, get_coord_inputs
@@ -32,27 +33,24 @@ class AdaptiveLinearNet:
         device="cuda:0",
     ):
 
-        self.delta_w_node = delta_w_node
+        with tf.device(device):
+            self.delta_w_node = delta_w_node
 
-        self.n_inputs = len(input_coords)
-        self.input_coords = torch.tensor(
-            input_coords, dtype=torch.float32, device=device
-        )
+            self.n_inputs = len(input_coords)
+            self.input_coords = tf.convert_to_tensor(input_coords, dtype=tf.float32)
 
-        self.n_outputs = len(output_coords)
-        self.output_coords = torch.tensor(
-            output_coords, dtype=torch.float32, device=device
-        )
+            self.n_outputs = len(output_coords)
+            self.output_coords = tf.convert_to_tensor(output_coords, dtype=tf.float32)
 
-        self.weight_threshold = weight_threshold
-        self.weight_max = weight_max
+            self.weight_threshold = weight_threshold
+            self.weight_max = weight_max
 
-        self.activation = activation
-        self.cppn_activation = cppn_activation
+            self.activation = activation
+            self.cppn_activation = cppn_activation
 
-        self.batch_size = batch_size
-        self.device = device
-        self.reset()
+            self.batch_size = batch_size
+            self.device = device
+            self.reset()
 
     def get_init_weights(self, in_coords, out_coords, w_node):
         (x_out, y_out), (x_in, y_in) = get_coord_inputs(in_coords, out_coords)
@@ -60,7 +58,8 @@ class AdaptiveLinearNet:
         n_in = len(in_coords)
         n_out = len(out_coords)
 
-        zeros = torch.zeros((n_out, n_in), dtype=torch.float32, device=self.device)
+        with tf.device(self.device):
+            zeros = tf.zeros((n_out, n_in), dtype=tf.float32)
 
         weights = self.cppn_activation(
             w_node(
@@ -78,20 +77,13 @@ class AdaptiveLinearNet:
         return weights
 
     def reset(self):
-        with torch.no_grad():
-            self.input_to_output = (
-                self.get_init_weights(
-                    self.input_coords, self.output_coords, self.delta_w_node
-                )
-                .unsqueeze(0)
-                .expand(self.batch_size, self.n_outputs, self.n_inputs)
-            )
+        self.input_to_output = self.get_init_weights(self.input_coords, self.output_coords, self.delta_w_node)
+        self.input_to_output = tf.expand_dims(self.input_to_output, 0)
+        self.input_to_output = tf.tile(self.input_to_output, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
 
-            self.w_expressed = self.input_to_output != 0
+        self.w_expressed = self.input_to_output != 0
 
-            self.batched_coords = get_coord_inputs(
-                self.input_coords, self.output_coords, batch_size=self.batch_size
-            )
+        self.batched_coords = get_coord_inputs(self.input_coords, self.output_coords, batch_size=self.batch_size)
 
     def activate(self, inputs):
         """
@@ -99,19 +91,15 @@ class AdaptiveLinearNet:
 
         returns: (batch_size, n_outputs)
         """
-        with torch.no_grad():
-            inputs = torch.tensor(
-                inputs, dtype=torch.float32, device=self.device
-            ).unsqueeze(2)
+        with tf.device(self.device):
+            inputs = tf.convert_to_tensor(inputs, dtype=tf.float32)
+            inputs = tf.expand_dims(inputs, 2)
 
-            outputs = self.activation(self.input_to_output.matmul(inputs))
+            outputs = self.activation(self.input_to_output @ inputs)
 
-            input_activs = inputs.transpose(1, 2).expand(
-                self.batch_size, self.n_outputs, self.n_inputs
-            )
-            output_activs = outputs.expand(
-                self.batch_size, self.n_outputs, self.n_inputs
-            )
+            input_activs = tf.transpose(inputs, perm=(0, 2, 1))
+            input_activs = tf.tile(input_activs, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
+            output_activs = tf.tile(outputs, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
 
             (x_out, y_out), (x_in, y_in) = self.batched_coords
 
@@ -130,11 +118,9 @@ class AdaptiveLinearNet:
             self.delta_w = delta_w
 
             self.input_to_output[self.w_expressed] += delta_w[self.w_expressed]
-            clamp_weights_(
-                self.input_to_output, weight_threshold=0.0, weight_max=self.weight_max
-            )
+            clamp_weights_(self.input_to_output, weight_threshold=0.0, weight_max=self.weight_max)
 
-        return outputs.squeeze(2)
+        return tf.squeeze(outputs, 2)
 
     @staticmethod
     def create(
