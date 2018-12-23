@@ -12,11 +12,12 @@
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
 
-import torch
+import tensorflow as tf
 from neat.graphs import required_for_output
 
 from .activations import str_to_activation
 from .aggregations import str_to_aggregation
+from .helpers import shape as tshape
 
 
 class Node:
@@ -74,15 +75,15 @@ class Node:
 
     def activate(self, xs, shape):
         """
-        xs: list of torch tensors
+        xs: list of tf tensors
         """
         if not xs:
-            return torch.full(shape, self.bias)
+            return tf.fill(shape, self.bias)
         inputs = [w * x for w, x in zip(self.weights, xs)]
         try:
             pre_activs = self.aggregation(inputs)
             activs = self.activation(self.response * pre_activs + self.bias)
-            assert activs.shape == shape, "Wrong shape for node {}".format(self.name)
+            assert tshape(activs) == shape, "Wrong shape for node {}".format(self.name)
         except Exception:
             raise Exception("Failed to activate node {}".format(self.name))
         return activs
@@ -96,14 +97,12 @@ class Node:
     def __call__(self, **inputs):
         assert self.leaves is not None
         assert inputs
-        shape = list(inputs.values())[0].shape
+        print(list(inputs.values())[0])
+        shape = tshape(list(inputs.values())[0])
         self.reset()
         for name in self.leaves.keys():
-            assert (
-                inputs[name].shape == shape
-            ), "Wrong activs shape for leaf {}, {} != {}".format(
-                name, inputs[name].shape, shape
-            )
+            assert (tshape(inputs[name]) == shape), \
+                "Wrong activs shape for leaf {}, {} != {}".format(name, tshape(inputs[name]), shape)
             self.leaves[name].set_activs(inputs[name])
         return self.get_activs(shape)
 
@@ -246,21 +245,24 @@ def clamp_weights_(weights, weight_threshold=0.2, weight_max=3.0):
 
 
 def get_coord_inputs(in_coords, out_coords, batch_size=None):
-    n_in = len(in_coords)
-    n_out = len(out_coords)
+    n_in = tshape(in_coords)[0]
+    n_out = tshape(out_coords)[0]
 
     if batch_size is not None:
-        in_coords = in_coords.unsqueeze(0).expand(batch_size, n_in, 2)
-        out_coords = out_coords.unsqueeze(0).expand(batch_size, n_out, 2)
+        in_coords = tf.tile(tf.expand_dims(in_coords, 0), (batch_size, n_in, 2))
+        out_coords = tf.tile(tf.expand_dims(out_coords, 0), (batch_size, n_out, 2))
 
-        x_out = out_coords[:, :, 0].unsqueeze(2).expand(batch_size, n_out, n_in)
-        y_out = out_coords[:, :, 1].unsqueeze(2).expand(batch_size, n_out, n_in)
-        x_in = in_coords[:, :, 0].unsqueeze(1).expand(batch_size, n_out, n_in)
-        y_in = in_coords[:, :, 1].unsqueeze(1).expand(batch_size, n_out, n_in)
+        x_out = tf.tile(tf.expand_dims(out_coords[:, :, 0], 2), (batch_size, n_out, n_in))
+        y_out = tf.tile(tf.expand_dims(out_coords[:, :, 1], 2), (batch_size, n_out, n_in))
+        x_in = tf.tile(tf.expand_dims(in_coords[:, :, 0], 1), (batch_size, n_out, n_in))
+        y_in = tf.tile(tf.expand_dims(in_coords[:, :, 1], 1), (batch_size, n_out, n_in))
     else:
-        x_out = out_coords[:, 0].unsqueeze(1).expand(n_out, n_in)
-        y_out = out_coords[:, 1].unsqueeze(1).expand(n_out, n_in)
-        x_in = in_coords[:, 0].unsqueeze(0).expand(n_out, n_in)
-        y_in = in_coords[:, 1].unsqueeze(0).expand(n_out, n_in)
+        print(in_coords[:, 0])
+        x_out = tf.tile(tf.expand_dims(out_coords[:, 0], 1), (n_out, n_in))
+        y_out = tf.tile(tf.expand_dims(out_coords[:, 1], 1), (n_out, n_in))
+        x_in = tf.tile(tf.expand_dims(in_coords[:, 0], 0), (n_out, n_in))
+        y_in = tf.tile(tf.expand_dims(in_coords[:, 1], 0), (n_out, n_in))
+        print(x_in)
+
 
     return (x_out, y_out), (x_in, y_in)

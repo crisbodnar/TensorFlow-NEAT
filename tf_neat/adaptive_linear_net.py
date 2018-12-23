@@ -12,11 +12,11 @@
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
 
-import torch
 import tensorflow as tf
 
 from .activations import identity_activation, tanh_activation
 from .cppn import clamp_weights_, create_cppn, get_coord_inputs
+from .helpers import shape as tshape
 
 
 class AdaptiveLinearNet:
@@ -55,8 +55,10 @@ class AdaptiveLinearNet:
     def get_init_weights(self, in_coords, out_coords, w_node):
         (x_out, y_out), (x_in, y_in) = get_coord_inputs(in_coords, out_coords)
 
-        n_in = len(in_coords)
-        n_out = len(out_coords)
+        n_in = tshape(in_coords)[0]
+        n_out = tshape(out_coords)[0]
+
+        print(tshape(x_in))
 
         with tf.device(self.device):
             zeros = tf.zeros((n_out, n_in), dtype=tf.float32)
@@ -97,7 +99,7 @@ class AdaptiveLinearNet:
 
             outputs = self.activation(self.input_to_output @ inputs)
 
-            input_activs = tf.transpose(inputs, perm=(0, 2, 1))
+            input_activs = tf.transpose(inputs, perm=[0, 2, 1])
             input_activs = tf.tile(input_activs, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
             output_activs = tf.tile(outputs, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
 

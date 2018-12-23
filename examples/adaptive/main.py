@@ -20,12 +20,17 @@ import neat
 
 # import torch
 import numpy as np
+import tensorflow as tf
 
 from tf_neat import t_maze
 from tf_neat.activations import tanh_activation
 from tf_neat.adaptive_linear_net import AdaptiveLinearNet
 from tf_neat.multi_env_eval import MultiEnvEvaluator
 from tf_neat.neat_reporter import LogReporter
+
+# Activate eager TensorFlow execution
+tf.enable_eager_execution()
+print("Executing eagerly: ", tf.executing_eagerly())
 
 batch_size = 4
 DEBUG = True

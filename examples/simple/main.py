@@ -23,6 +23,10 @@ from tf_neat.multi_env_eval import MultiEnvEvaluator
 from tf_neat.neat_reporter import LogReporter
 from tf_neat.recurrent_net import RecurrentNet
 
+# Activate eager TensorFlow execution
+tf.enable_eager_execution()
+print("Executing eagerly: ", tf.executing_eagerly())
+
 max_env_steps = 200
 
 
@@ -42,9 +46,6 @@ def activate_net(net, states):
 @click.command()
 @click.option("--n_generations", type=int, default=100)
 def run(n_generations):
-    tf.enable_eager_execution()
-    print(tf.executing_eagerly())
-
     # Load the config file, which is assumed to live in
     # the same directory as this script.
     config_path = os.path.join(os.path.dirname(__file__), "neat.cfg")
