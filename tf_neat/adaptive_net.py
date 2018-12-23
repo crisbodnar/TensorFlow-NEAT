@@ -80,9 +80,7 @@ class AdaptiveNet:
 
         weights = w_node(x_out=x_out, y_out=y_out, x_in=x_in, y_in=y_in,
                          pre=zeros, post=zeros, w=zeros)
-        clamp_weights_(weights, self.weight_threshold)
-
-        return weights
+        return clamp_weights_(weights, self.weight_threshold)
 
     def reset(self):
         with torch.no_grad():

@@ -13,11 +13,12 @@
 #     limitations under the License.
 
 import tensorflow as tf
+import numpy as np
 from neat.graphs import required_for_output
 
 from .activations import str_to_activation
 from .aggregations import str_to_aggregation
-from .helpers import shape as tshape
+from .helpers import shape as tshape, expand
 
 
 class Node:
@@ -97,7 +98,6 @@ class Node:
     def __call__(self, **inputs):
         assert self.leaves is not None
         assert inputs
-        print(list(inputs.values())[0])
         shape = tshape(list(inputs.values())[0])
         self.reset()
         for name in self.leaves.keys():
@@ -235,13 +235,15 @@ def create_cppn(genome, config, leaf_names, node_names, output_activation=None):
 
 
 def clamp_weights_(weights, weight_threshold=0.2, weight_max=3.0):
-    # TODO: also try LEO
-    low_idxs = weights.abs() < weight_threshold
+    # TODO(Cris): Find a more efficient tensor implementatation
+    low_idxs = np.abs(weights) < weight_threshold
+    weights = weights.numpy() if tf.contrib.framework.is_tensor(weights) else weights
     weights[low_idxs] = 0
     weights[weights > 0] -= weight_threshold
     weights[weights < 0] += weight_threshold
     weights[weights > weight_max] = weight_max
     weights[weights < -weight_max] = -weight_max
+    return tf.convert_to_tensor(weights)
 
 
 def get_coord_inputs(in_coords, out_coords, batch_size=None):
@@ -249,20 +251,17 @@ def get_coord_inputs(in_coords, out_coords, batch_size=None):
     n_out = tshape(out_coords)[0]
 
     if batch_size is not None:
-        in_coords = tf.tile(tf.expand_dims(in_coords, 0), (batch_size, n_in, 2))
-        out_coords = tf.tile(tf.expand_dims(out_coords, 0), (batch_size, n_out, 2))
+        in_coords = expand(tf.expand_dims(in_coords, 0), (batch_size, n_in, 2))
+        out_coords = expand(tf.expand_dims(out_coords, 0), (batch_size, n_out, 2))
 
-        x_out = tf.tile(tf.expand_dims(out_coords[:, :, 0], 2), (batch_size, n_out, n_in))
-        y_out = tf.tile(tf.expand_dims(out_coords[:, :, 1], 2), (batch_size, n_out, n_in))
-        x_in = tf.tile(tf.expand_dims(in_coords[:, :, 0], 1), (batch_size, n_out, n_in))
-        y_in = tf.tile(tf.expand_dims(in_coords[:, :, 1], 1), (batch_size, n_out, n_in))
+        x_out = expand(tf.expand_dims(out_coords[:, :, 0], 2), (batch_size, n_out, n_in))
+        y_out = expand(tf.expand_dims(out_coords[:, :, 1], 2), (batch_size, n_out, n_in))
+        x_in = expand(tf.expand_dims(in_coords[:, :, 0], 1), (batch_size, n_out, n_in))
+        y_in = expand(tf.expand_dims(in_coords[:, :, 1], 1), (batch_size, n_out, n_in))
     else:
-        print(in_coords[:, 0])
-        x_out = tf.tile(tf.expand_dims(out_coords[:, 0], 1), (n_out, n_in))
-        y_out = tf.tile(tf.expand_dims(out_coords[:, 1], 1), (n_out, n_in))
-        x_in = tf.tile(tf.expand_dims(in_coords[:, 0], 0), (n_out, n_in))
-        y_in = tf.tile(tf.expand_dims(in_coords[:, 1], 0), (n_out, n_in))
-        print(x_in)
-
+        x_out = expand(tf.expand_dims(out_coords[:, 0], 1), (n_out, n_in))
+        y_out = expand(tf.expand_dims(out_coords[:, 1], 1), (n_out, n_in))
+        x_in = expand(tf.expand_dims(in_coords[:, 0], 0), (n_out, n_in))
+        y_in = expand(tf.expand_dims(in_coords[:, 1], 0), (n_out, n_in))
 
     return (x_out, y_out), (x_in, y_in)

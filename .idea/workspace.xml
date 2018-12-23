@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/tf_neat/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/adaptive/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/adaptive/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/simple/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/simple/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.json" beforeDir="false" afterPath="$PROJECT_DIR$/log.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_neat/adaptive_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_net.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tf_neat/cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/cppn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_neat/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/helpers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cppn.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cppn.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/cppn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="259" column="30" lean-forward="true" selection-start-line="259" selection-start-column="30" selection-end-line="259" selection-end-column="30" />
+            <state relative-caret-position="-2572">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding>
                 <element signature="e#612#635#0" expanded="true" />
               </folding>
@@ -33,17 +33,17 @@
       <file leaf-file-name="helpers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/helpers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="195">
+              <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adaptive_linear_net.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="adaptive_linear_net.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+            <state relative-caret-position="373">
+              <caret line="82" column="77" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
               <folding>
                 <element signature="e#612#635#0" expanded="true" />
               </folding>
@@ -74,7 +74,11 @@
       </file>
       <file leaf-file-name="adaptive_net.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="neat_reporter.py" pinned="false" current-in-tab="false">
@@ -113,10 +117,17 @@
       <find>shape(</find>
       <find>leaves</find>
       <find>get_coord</find>
+      <find>clamp_we</find>
+      <find>clamp_</find>
+      <find>clamp_w</find>
+      <find>tf.tile</find>
+      <find>clamp_weights</find>
+      <find>print</find>
     </findStrings>
     <replaceStrings>
       <replace>shape</replace>
       <replace>tshape(</replace>
+      <replace>expand</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -130,8 +141,9 @@
         <option value="$PROJECT_DIR$/examples/simple/main.py" />
         <option value="$PROJECT_DIR$/examples/adaptive/main.py" />
         <option value="$PROJECT_DIR$/tf_neat/helpers.py" />
-        <option value="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" />
         <option value="$PROJECT_DIR$/tf_neat/cppn.py" />
+        <option value="$PROJECT_DIR$/tf_neat/adaptive_net.py" />
+        <option value="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" />
       </list>
     </option>
   </component>
@@ -448,9 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/activations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -470,25 +479,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/helpers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="195">
+          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+    <entry file="file://$PROJECT_DIR$/tf_neat/cppn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        <state relative-caret-position="-2572">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding>
             <element signature="e#612#635#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/cppn.py">
+    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="259" column="30" lean-forward="true" selection-start-line="259" selection-start-column="30" selection-end-line="259" selection-end-column="30" />
+        <state relative-caret-position="705">
+          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="82" column="77" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
           <folding>
             <element signature="e#612#635#0" expanded="true" />
           </folding>
