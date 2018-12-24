@@ -11,20 +11,12 @@
 #     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
+#
+# This file was modified by github.com/crisbodnar to add TensorFlow support
 
 import numpy as np
 import tensorflow as tf
 from .activations import sigmoid_activation
-
-# def sparse_mat(shape, conns):
-#     idxs, weights = conns
-#     if len(idxs) > 0:
-#         idxs = torch.LongTensor(idxs).t()
-#         weights = torch.FloatTensor(weights)
-#         mat = torch.sparse.FloatTensor(idxs, weights, shape)
-#     else:
-#         mat = torch.sparse.FloatTensor(shape[0], shape[1])
-#     return mat
 
 
 def tran(tensor):
