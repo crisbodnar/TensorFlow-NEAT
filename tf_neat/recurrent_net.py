@@ -24,14 +24,11 @@ def tran(tensor):
 
 
 def dense_from_coo(shape, conns, dtype=tf.float64):
-    # TODO(Cris): Optimise the tensor assignment
-    mat = np.zeros(shape)
     idxs, weights = conns
     if len(idxs) == 0:
-        return tf.convert_to_tensor(mat, preferred_dtype=dtype)
+        return tf.zeros(shape, dtype=dtype)
     rows, cols = np.array(idxs).transpose()
-    mat[rows, cols] = weights
-    return tf.convert_to_tensor(mat, preferred_dtype=dtype)
+    return tf.scatter_nd(tf.stack([rows, cols], -1), tf.convert_to_tensor(weights, preferred_dtype=dtype), shape)
 
 
 class RecurrentNet():
