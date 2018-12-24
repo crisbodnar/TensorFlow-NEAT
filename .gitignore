@@ -1,0 +1,4 @@
+*/__py_cache__/
+.pytest_cach/
+*.pyc
+log.json
