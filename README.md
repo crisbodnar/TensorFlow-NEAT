@@ -76,9 +76,9 @@ And a simple example using Adaptive HyperNEAT to partially solve a T-maze can be
 python3 -m examples.adaptive.main
 ```
 
-To run the tests use:
+To run the tests run from the root directory:
 ```
-pytest tests/
+pytest 
 ```
 
 ## Author / Support
