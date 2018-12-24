@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/test_adaptive_linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_adaptive_linear.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_recurrent.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_recurrent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tf_neat/adaptive_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_net.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-764">
-              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#612#630#0" expanded="true" />
               </folding>
@@ -41,8 +40,8 @@
       <file leaf-file-name="ops.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="1028" column="14" selection-start-line="1028" selection-start-column="4" selection-end-line="1028" selection-end-column="14" />
+            <state relative-caret-position="335">
+              <caret line="1030" column="14" selection-start-line="1030" selection-start-column="14" selection-end-line="1030" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -59,13 +58,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_adaptive_linear.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_adaptive_linear.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_adaptive_linear.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+              <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding>
                 <element signature="e#612#630#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adaptive_net.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="143" column="67" lean-forward="true" selection-start-line="143" selection-start-column="67" selection-end-line="143" selection-end-column="67" />
+              <folding>
+                <element signature="e#612#635#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -105,15 +116,6 @@
               <folding>
                 <element signature="e#612#621#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
             </state>
           </provider>
         </entry>
@@ -174,7 +176,6 @@
         <option value="$PROJECT_DIR$/examples/adaptive/main.py" />
         <option value="$PROJECT_DIR$/tf_neat/helpers.py" />
         <option value="$PROJECT_DIR$/tf_neat/cppn.py" />
-        <option value="$PROJECT_DIR$/tf_neat/adaptive_net.py" />
         <option value="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" />
         <option value="$PROJECT_DIR$/tests/__init__.py" />
         <option value="$PROJECT_DIR$/tests/run_tests.py" />
@@ -182,6 +183,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/test_recurrent.py" />
         <option value="$PROJECT_DIR$/tests/test_adaptive_linear.py" />
+        <option value="$PROJECT_DIR$/tf_neat/adaptive_net.py" />
       </list>
     </option>
   </component>
@@ -519,13 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/neat_reporter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -571,11 +566,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/run_tests.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -599,15 +590,15 @@
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/neat/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="1028" column="14" selection-start-line="1028" selection-start-column="4" selection-end-line="1028" selection-end-column="14" />
+        <state relative-caret-position="335">
+          <caret line="1030" column="14" selection-start-line="1030" selection-start-column="14" selection-end-line="1030" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/recurrent_net.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-764">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#612#630#0" expanded="true" />
           </folding>
@@ -620,7 +611,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -657,9 +648,19 @@
     <entry file="file://$PROJECT_DIR$/tests/test_adaptive_linear.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding>
             <element signature="e#612#630#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="143" column="67" lean-forward="true" selection-start-line="143" selection-start-column="67" selection-end-line="143" selection-end-column="67" />
+          <folding>
+            <element signature="e#612#635#0" expanded="true" />
           </folding>
         </state>
       </provider>
