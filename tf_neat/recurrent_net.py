@@ -30,15 +30,16 @@ from .activations import sigmoid_activation
 def tran(tensor):
     return tf.transpose(tensor)
 
+
 def dense_from_coo(shape, conns, dtype=tf.float64):
     # TODO(Cris): Optimise the tensor assignment
     mat = np.zeros(shape)
     idxs, weights = conns
     if len(idxs) == 0:
-        return tf.convert_to_tensor(mat)
+        return tf.convert_to_tensor(mat, preferred_dtype=dtype)
     rows, cols = np.array(idxs).transpose()
     mat[rows, cols] = weights
-    return tf.convert_to_tensor(mat, dtype=dtype)
+    return tf.convert_to_tensor(mat, preferred_dtype=dtype)
 
 
 class RecurrentNet():
@@ -98,7 +99,7 @@ class RecurrentNet():
 
         returns: (batch_size, n_outputs)
         '''
-        inputs = tf.convert_to_tensor(inputs, dtype=self.dtype)
+        inputs = tf.convert_to_tensor(inputs, preferred_dtype=self.dtype)
         activs_for_output = self.activs
         if self.n_hidden > 0:
             for _ in range(self.n_internal_steps):

@@ -16,10 +16,11 @@ import pickle
 
 import neat
 import numpy as np
-import torch
+import tensorflow as tf
 
 from tf_neat.activations import tanh_activation
 from tf_neat.recurrent_net import RecurrentNet
+tf.enable_eager_execution()
 
 
 def assert_almost_equal(x, y, tol):
@@ -27,6 +28,8 @@ def assert_almost_equal(x, y, tol):
 
 
 def test_unconnected():
+    assert tf.executing_eagerly()
+
     net = RecurrentNet(
         n_inputs=1,
         n_hidden=0,
@@ -46,15 +49,17 @@ def test_unconnected():
     result = net.activate([[0.2]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.outputs[0, 0], 0.5, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
     result = net.activate([[0.4]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.outputs[0, 0], 0.5, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
 
 def test_simple():
+    assert tf.executing_eagerly()
+
     net = RecurrentNet(
         n_inputs=1,
         n_hidden=0,
@@ -74,15 +79,17 @@ def test_simple():
     result = net.activate([[0.2]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.outputs[0, 0], 0.731, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
     result = net.activate([[0.4]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.outputs[0, 0], 0.881, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
 
 def test_hidden():
+    assert tf.executing_eagerly()
+
     net = RecurrentNet(
         n_inputs=1,
         n_hidden=1,
@@ -104,16 +111,18 @@ def test_hidden():
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.731, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.975, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
     result = net.activate([[0.4]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.881, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.988, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
 
 def test_recurrent():
+    assert tf.executing_eagerly()
+
     net = RecurrentNet(
         n_inputs=1,
         n_hidden=1,
@@ -135,16 +144,18 @@ def test_recurrent():
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.731, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.975, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
     result = net.activate([[-1.4]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.577, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.947, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
 
 def test_dtype():
+    assert tf.executing_eagerly()
+
     net = RecurrentNet(
         n_inputs=1,
         n_hidden=1,
@@ -160,30 +171,32 @@ def test_dtype():
         hidden_biases=[0],
         output_biases=[0],
         use_current_activs=True,
-        dtype=torch.float32,
+        dtype=tf.float32,
     )
 
     result = net.activate([[0.2]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.731, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.975, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
     result = net.activate([[-1.4]])
     assert result.shape == (1, 1)
     assert_almost_equal(net.activs[0, 0], 0.577, 0.001)
     assert_almost_equal(net.outputs[0, 0], 0.947, 0.001)
-    assert result[0, 0] == net.outputs[0, 0]
+    assert tf.math.equal(result[0, 0], net.outputs[0, 0])
 
 
 def test_match_neat():
+    assert tf.executing_eagerly()
+
     with open("tests/test-genome.pkl", "rb") as f:
         genome = pickle.load(f)
 
     # use tanh since neat sets output nodes with no inputs to 0
     # (sigmoid would output 0.5 for us)
     def neat_tanh_activation(z):
-        return float(torch.tanh(2.5 * torch.tensor(z, dtype=torch.float64)))
+        return float(tf.tanh(2.5 * tf.convert_to_tensor(z, dtype=tf.float64)))
 
     for node in genome.nodes.values():
         node.response = 0.5
@@ -213,7 +226,7 @@ def test_match_neat():
                 links,
             )
 
-        torch_net = RecurrentNet.create(
+        tf_net = RecurrentNet.create(
             genome, config, activation=tanh_activation, prune_empty=True
         )
 
@@ -221,5 +234,5 @@ def test_match_neat():
             inputs = np.random.randn(12)
             # print(inputs)
             neat_result = neat_net.activate(inputs)
-            torch_result = torch_net.activate([inputs])[0].numpy()
-            assert np.allclose(neat_result, torch_result, atol=1e-8)
+            tf_result = tf_net.activate([inputs])[0].numpy()
+            assert np.allclose(neat_result, tf_result, atol=1e-8)
