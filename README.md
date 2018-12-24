@@ -9,7 +9,7 @@ HyperNEAT is an extension to NEAT that indirectly encodes the weights of the net
 Adaptive HyperNEAT is an extension to HyperNEAT which indirectly encodes both the initial weights and an update rule for the weights such that some learning can occur during a network's "lifetime." For more information, see this research paper: http://eplex.cs.ucf.edu/papers/risi_sab10.pdf.
 
 ## About
-Because TensorFlow did not support dyanmic computation graphs, there was no mature TensorFlow implementation of NEAT. This project makes use
+Because TensorFlow did not support dynamic computation graphs, there was no mature TensorFlow implementation of NEAT. This project makes use
 of the dynamic computation graphs introduced with TensorFlow Eager. TensorFlow NEAT builds upon [PyTorch-NEAT](https://github.com/uber-research/PyTorch-NEAT) and [NEAT-Python](https://github.com/CodeReclaimers/neat-python) by providing some functions which can turn a NEAT-Python genome into either a recurrent TensorFlow network or a TensorFlow CPPN for use in HyperNEAT or Adaptive HyperNEAT.
 We also provide some environments in which to test NEAT and Adaptive HyperNEAT, and a more involved example using the CPPN infrastructure with Adaptive HyperNEAT on a T-maze.
 
