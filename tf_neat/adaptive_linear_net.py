@@ -114,7 +114,8 @@ class AdaptiveLinearNet:
             )
 
             self.delta_w = delta_w
-            tf.scatter_add(self.input_to_output, tf.where(self.w_expressed), delta_w.numpy()[self.w_expressed])
+            self.input_to_output = self.input_to_output.numpy()
+            self.input_to_output[self.w_expressed] += self.delta_w.numpy()[self.w_expressed]
             self.input_to_output = clamp_weights_(self.input_to_output, weight_threshold=0.0, weight_max=self.weight_max)
 
         return tf.squeeze(outputs, 2)

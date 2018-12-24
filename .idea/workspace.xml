@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ec6366cb-41fd-4446-8d2f-4e216b4325ee" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.json" beforeDir="false" afterPath="$PROJECT_DIR$/log.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_linear_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf_neat/adaptive_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/adaptive_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf_neat/cppn.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/cppn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf_neat/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/tf_neat/helpers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adaptive_linear_net.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="adaptive_linear_net.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="82" column="77" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
+            <state relative-caret-position="431">
+              <caret line="110" column="39" lean-forward="true" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
               <folding>
                 <element signature="e#612#635#0" expanded="true" />
               </folding>
@@ -60,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples/adaptive/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+            <state relative-caret-position="314">
+              <caret line="69" column="53" lean-forward="true" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
               <folding>
                 <element signature="e#612#634#0" expanded="true" />
               </folding>
@@ -113,7 +109,6 @@
       <find>reset</find>
       <find>tf.shape</find>
       <find>eval_genomes</find>
-      <find>make_net</find>
       <find>shape(</find>
       <find>leaves</find>
       <find>get_coord</find>
@@ -123,6 +118,7 @@
       <find>tf.tile</find>
       <find>clamp_weights</find>
       <find>print</find>
+      <find>make_net</find>
     </findStrings>
     <replaceStrings>
       <replace>shape</replace>
@@ -430,16 +426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/neat_reporter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#612#623#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/simple/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -467,16 +453,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/adaptive/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
-          <folding>
-            <element signature="e#612#634#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/helpers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -494,6 +470,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="110" column="39" lean-forward="true" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+          <folding>
+            <element signature="e#612#635#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_net.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="705">
@@ -501,12 +487,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_neat/adaptive_linear_net.py">
+    <entry file="file://$PROJECT_DIR$/tf_neat/neat_reporter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="82" column="77" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
-            <element signature="e#612#635#0" expanded="true" />
+            <element signature="e#612#623#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/adaptive/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="69" column="53" lean-forward="true" selection-start-line="69" selection-start-column="53" selection-end-line="69" selection-end-column="53" />
+          <folding>
+            <element signature="e#612#634#0" expanded="true" />
           </folding>
         </state>
       </provider>
