@@ -16,7 +16,7 @@ import tensorflow as tf
 
 from .activations import identity_activation, tanh_activation
 from .cppn import clamp_weights_, create_cppn, get_coord_inputs
-from .helpers import shape as tshape, expand
+from .helpers import expand
 
 
 class AdaptiveLinearNet:
@@ -55,8 +55,8 @@ class AdaptiveLinearNet:
     def get_init_weights(self, in_coords, out_coords, w_node):
         (x_out, y_out), (x_in, y_in) = get_coord_inputs(in_coords, out_coords)
 
-        n_in = tshape(in_coords)[0]
-        n_out = tshape(out_coords)[0]
+        n_in = in_coords.shape[0]
+        n_out = out_coords.shape[0]
 
         with tf.device(self.device):
             zeros = tf.zeros((n_out, n_in), dtype=tf.float32)

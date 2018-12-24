@@ -1,13 +1,9 @@
 import tensorflow as tf
 
 
-def shape(tensor):
-    return tensor.get_shape().as_list()
-
-
 def expand(tensor, multiples):
     m = []
-    for i, dim in enumerate(shape(tensor)):
+    for i, dim in enumerate(tensor.shape):
         if dim == 1:
             m.append(multiples[i])
         else:

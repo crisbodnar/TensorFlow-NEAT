@@ -18,7 +18,7 @@ from neat.graphs import required_for_output
 
 from .activations import str_to_activation
 from .aggregations import str_to_aggregation
-from .helpers import shape as tshape, expand
+from .helpers import expand
 
 
 class Node:
@@ -84,7 +84,7 @@ class Node:
         try:
             pre_activs = self.aggregation(inputs)
             activs = self.activation(self.response * pre_activs + self.bias)
-            assert tshape(activs) == shape, "Wrong shape for node {}".format(self.name)
+            assert activs.shape == shape, "Wrong shape for node {}".format(self.name)
         except Exception:
             raise Exception("Failed to activate node {}".format(self.name))
         return activs
@@ -98,11 +98,11 @@ class Node:
     def __call__(self, **inputs):
         assert self.leaves is not None
         assert inputs
-        shape = tshape(list(inputs.values())[0])
+        shape = list(inputs.values())[0].shape
         self.reset()
         for name in self.leaves.keys():
-            assert (tshape(inputs[name]) == shape), \
-                "Wrong activs shape for leaf {}, {} != {}".format(name, tshape(inputs[name]), shape)
+            assert (inputs[name].shape == shape), \
+                "Wrong activs shape for leaf {}, {} != {}".format(name, inputs[name].shape, shape)
             self.leaves[name].set_activs(inputs[name])
         return self.get_activs(shape)
 
@@ -247,8 +247,8 @@ def clamp_weights_(weights, weight_threshold=0.2, weight_max=3.0):
 
 
 def get_coord_inputs(in_coords, out_coords, batch_size=None):
-    n_in = tshape(in_coords)[0]
-    n_out = tshape(out_coords)[0]
+    n_in = in_coords.shape[0]
+    n_out = out_coords.shape[0]
 
     if batch_size is not None:
         in_coords = expand(tf.expand_dims(in_coords, 0), (batch_size, n_in, 2))

@@ -13,11 +13,13 @@
 #     limitations under the License.
 
 import numpy as np
-import torch
+import tensorflow as tf
 
 from tf_neat.activations import identity_activation as identity
 from tf_neat.aggregations import sum_aggregation as sum_ag
 from tf_neat.cppn import Leaf, Node
+
+tf.enable_eager_execution()
 
 
 def assert_almost_equal(x, y, tol):
@@ -29,7 +31,7 @@ def test_cppn_simple():
     x = Leaf(name="x")
     y = Node([x], [1.0], 1.0, 0.0, identity, sum_ag, name="y")
     z = Node([x], [1.0], 1.0, 0.0, identity, sum_ag, name="z")
-    x_activs = torch.full(shape, 3)
+    x_activs = tf.fill(shape, 3)
     x.set_activs(x_activs)
     assert np.allclose(x_activs, y.get_activs(shape).numpy())
     assert np.allclose(x_activs, z.get_activs(shape).numpy())
@@ -39,7 +41,7 @@ def test_cppn_unconnected():
     shape = (2, 2)
     x = Leaf(name="x")
     y = Node([], [1.0], 1.0, 0.5, identity, sum_ag, name="y")
-    x_activs = torch.full(shape, 3)
+    x_activs = tf.fill(shape, 3)
     x.set_activs(x_activs)
     assert np.allclose(y.get_activs(shape).numpy(), np.full(shape, 0.5))
 
@@ -60,11 +62,11 @@ def test_cppn_call():
     c = Node([a], [1.0], 1.0, 0.0, identity, sum_ag, leaves=leaves)
 
     shape = (2, 2)
-    a_activs = a(x=torch.full(shape, 0.5), y=torch.full(shape, 2.0)).numpy()
+    a_activs = a(x=tf.fill(shape, 0.5), y=tf.fill(shape, 2.0)).numpy()
     assert np.allclose(a_activs, np.full(shape, 0.5))
-    b_activs = b(x=torch.full(shape, 1.5), y=torch.full(shape, 2.0))
+    b_activs = b(x=tf.fill(shape, 1.5), y=tf.fill(shape, 2.0))
     assert np.allclose(b_activs, np.full(shape, 3.5))
-    c_activs = c(x=torch.full(shape, 5.5), y=torch.full(shape, 3.0))
+    c_activs = c(x=tf.fill(shape, 5.5), y=tf.fill(shape, 3.0))
     assert np.allclose(c_activs, np.full(shape, 5.5))
 
 
@@ -84,9 +86,9 @@ def test_cppn_deep_call():
     c = Node([a], [1.0], 1.0, 0.0, identity, sum_ag, leaves=leaves)
 
     shape = (2, 2)
-    b_activs = b(x=torch.full(shape, 1.5), y=torch.full(shape, 2.0))
+    b_activs = b(x=tf.fill(shape, 1.5), y=tf.fill(shape, 2.0))
     assert np.allclose(b_activs, np.full(shape, 3.5))
-    c_activs = c(x=torch.full(shape, 5.5), y=torch.full(shape, 3.0))
+    c_activs = c(x=tf.fill(shape, 5.5), y=tf.fill(shape, 3.0))
     assert np.allclose(c_activs, np.full(shape, 3.0))
-    b_activs = b(x=torch.full(shape, 1.5), y=torch.full(shape, 2.0))
+    b_activs = b(x=tf.fill(shape, 1.5), y=tf.fill(shape, 2.0))
     assert np.allclose(b_activs, np.full(shape, 3.5))
