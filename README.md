@@ -1,4 +1,4 @@
-# PyTorch NEAT
+# TensorFlow NEAT
 
 [![Build Status](https://travis-ci.org/crisbodnar/TensorFlow-NEAT.svg?branch=master)](https://travis-ci.org/crisbodnar/TensorFlow-NEAT)
 ## Background
