@@ -20,7 +20,9 @@ import tensorflow as tf
 
 from tf_neat.activations import tanh_activation
 from tf_neat.recurrent_net import RecurrentNet
-tf.enable_eager_execution()
+
+if not tf.executing_eagerly():
+    tf.enable_eager_execution()
 
 
 def assert_almost_equal(x, y, tol):

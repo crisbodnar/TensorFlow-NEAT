@@ -13,20 +13,21 @@
 #     limitations under the License.
 
 import numpy as np
-import torch
+import tensorflow as tf
 
 from tf_neat.activations import identity_activation as identity
 from tf_neat.adaptive_linear_net import AdaptiveLinearNet
 from tf_neat.aggregations import sum_aggregation as sum_ag
 from tf_neat.cppn import Leaf, Node
+tf.enable_eager_execution()
 
 
 def slow_tanh(x):
-    return torch.tanh(0.5 * x)
+    return tf.tanh(0.5 * x)
 
 
 def np_tanh(x):
-    return torch.tanh(0.5 * torch.tensor(x)).numpy()
+    return tf.tanh(0.5 * tf.convert_to_tensor(x)).numpy()
 
 
 def test_pre():
