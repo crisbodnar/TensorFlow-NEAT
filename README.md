@@ -8,13 +8,14 @@ HyperNEAT is an extension to NEAT that indirectly encodes the weights of the net
 Adaptive HyperNEAT is an extension to HyperNEAT which indirectly encodes both the initial weights and an update rule for the weights such that some learning can occur during a network's "lifetime." For more information, see this research paper: http://eplex.cs.ucf.edu/papers/risi_sab10.pdf.
 
 ## About
-PyTorch NEAT builds upon [NEAT-Python](https://github.com/CodeReclaimers/neat-python) by providing some functions which can turn a NEAT-Python genome into either a recurrent PyTorch network or a PyTorch CPPN for use in HyperNEAT or Adaptive HyperNEAT.
+Because TensorFlow did not support dyanmic computation graphs, there was no mature TensorFlow implementation of NEAT. This project makes use
+of the dynamic computation graphs introduced with TensorFlow Eager. TensorFlow NEAT builds upon [Pytorch-NEAT](https://github.com/uber-research/PyTorch-NEAT) and [NEAT-Python](https://github.com/CodeReclaimers/neat-python) by providing some functions which can turn a NEAT-Python genome into either a recurrent TensorFlow network or a TensorFlow CPPN for use in HyperNEAT or Adaptive HyperNEAT.
 We also provide some environments in which to test NEAT and Adaptive HyperNEAT, and a more involved example using the CPPN infrastructure with Adaptive HyperNEAT on a T-maze.
 
 ## Examples
 The following snippet turns a NEAT-Python genome into a recurrent PyTorch network:
 ```
-from pytorch_neat.recurrent_net import RecurrentNet
+from tf_neat.recurrent_net import RecurrentNet
 
 net = RecurrentNet.create(genome, config, bs)
 outputs = net.activate(some_array)
@@ -22,14 +23,14 @@ outputs = net.activate(some_array)
 
 You can also turn a NEAT-Python genome into a CPPN:
 ```
-from pytorch_neat.cppn import create_cppn
+from tf_neat.cppn import create_cppn
 
 cppn_nodes = create_cppn(genome, config)
 ```
 
 A CPPN is represented as a graph structure. For easy evaluation, a CPPN's input and output nodes may be named:
 ```
-from pytorch_neat.cppn import create_cppn
+from tf_neat.cppn import create_cppn
 
 [delta_w_node] = create_cppn(
     genome,
@@ -43,8 +44,8 @@ delta_w = delta_w_node(x_in=some_array, y_in=other_array, ...)
 
 We also provide some infrastructure for running networks in Gym environments:
 ```
-from pytorch_neat.multi_env_eval import MultiEnvEvaluator
-from pytorch_neat.recurrent_net import RecurrentNet
+from tf_neat.multi_env_eval import MultiEnvEvaluator
+from tf_neat.recurrent_net import RecurrentNet
 
 def make_net(genome, config, batch_size):
     return RecurrentNet.create(genome, config, batch_size)
@@ -75,8 +76,11 @@ And a simple example using Adaptive HyperNEAT to partially solve a T-maze can be
 python3 -m examples.adaptive.main
 ```
 
+To run the tests use:
+```
+pytest tests/
+```
+
 ## Author / Support
 
-PyTorch NEAT is extended from Python NEAT by Alex Gajewsky.
-
-Questions can be directed to joel.lehman@uber.com.
+TensorFlow NEAT is extended from PyTorch NEAT from Uber Research and Python NEAT by Alex Gajewsky.
