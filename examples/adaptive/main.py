@@ -33,7 +33,7 @@ tf.enable_eager_execution()
 print("Executing eagerly: ", tf.executing_eagerly())
 
 batch_size = 4
-DEBUG = True
+DEBUG = False
 
 
 def make_net(genome, config, _batch_size):
