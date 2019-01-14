@@ -56,35 +56,38 @@ class AdaptiveLinearNet:
             self.reset()
 
     def get_init_weights(self, in_coords, out_coords, w_node):
-        (x_out, y_out), (x_in, y_in) = get_coord_inputs(in_coords, out_coords)
-
-        n_in = in_coords.shape[0]
-        n_out = out_coords.shape[0]
-
         with tf.device(self.device):
+
+            (x_out, y_out), (x_in, y_in) = get_coord_inputs(in_coords, out_coords)
+
+            n_in = in_coords.shape[0]
+            n_out = out_coords.shape[0]
+
             zeros = tf.zeros((n_out, n_in), dtype=tf.float32)
 
-        weights = self.cppn_activation(
-            w_node(
-                x_out=x_out,
-                y_out=y_out,
-                x_in=x_in,
-                y_in=y_in,
-                pre=zeros,
-                post=zeros,
-                w=zeros,
+            weights = self.cppn_activation(
+                w_node(
+                    x_out=x_out,
+                    y_out=y_out,
+                    x_in=x_in,
+                    y_in=y_in,
+                    pre=zeros,
+                    post=zeros,
+                    w=zeros,
+                )
             )
-        )
-        return clamp_weights_(weights, self.weight_threshold, self.weight_max)
+            return clamp_weights_(weights, self.weight_threshold, self.weight_max)
 
     def reset(self):
-        self.input_to_output = self.get_init_weights(self.input_coords, self.output_coords, self.delta_w_node)
-        self.input_to_output = tf.expand_dims(self.input_to_output, 0)
-        self.input_to_output = expand(self.input_to_output, multiples=(self.batch_size, self.n_outputs, self.n_inputs))
+        with tf.device(self.device):
+            self.input_to_output = self.get_init_weights(self.input_coords, self.output_coords, self.delta_w_node)
+            self.input_to_output = tf.expand_dims(self.input_to_output, 0)
+            self.input_to_output = expand(self.input_to_output,
+                                          multiples=(self.batch_size, self.n_outputs, self.n_inputs))
 
-        self.w_expressed = tf.not_equal(self.input_to_output, tf.constant(0.0))
+            self.w_expressed = tf.not_equal(self.input_to_output, tf.constant(0.0))
 
-        self.batched_coords = get_coord_inputs(self.input_coords, self.output_coords, batch_size=self.batch_size)
+            self.batched_coords = get_coord_inputs(self.input_coords, self.output_coords, batch_size=self.batch_size)
 
     def activate(self, inputs):
         """
@@ -121,7 +124,7 @@ class AdaptiveLinearNet:
             self.input_to_output[self.w_expressed] += self.delta_w.numpy()[self.w_expressed]
             self.input_to_output = clamp_weights_(self.input_to_output, weight_threshold=0.0, weight_max=self.weight_max)
 
-        return tf.squeeze(outputs, 2)
+            return tf.squeeze(outputs, 2)
 
     @staticmethod
     def create(

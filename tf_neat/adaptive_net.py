@@ -67,7 +67,7 @@ class AdaptiveNet:
 
             self.batch_size = batch_size
             self.device = device
-        self.reset()
+            self.reset()
 
     def get_init_weights(self, in_coords, out_coords, w_node):
         with tf.device(self.device):
@@ -126,7 +126,7 @@ class AdaptiveNet:
                 pre=hidden_inputs, post=hidden_outputs,
                 w=self.hidden_to_hidden)
 
-        return tf.squeeze(outputs, 2)
+            return tf.squeeze(outputs, 2)
 
     @staticmethod
     def create(genome,
