@@ -114,7 +114,7 @@ def run(n_generations, n_processes):
     pop.add_reporter(stats)
     reporter = neat.StdOutReporter(True)
     pop.add_reporter(reporter)
-    logger = LogReporter("log.json", evaluator.eval_genome)
+    logger = LogReporter("./logs/adaptive.json", evaluator.eval_genome)
     pop.add_reporter(logger)
 
     winner = pop.run(eval_genomes, n_generations)

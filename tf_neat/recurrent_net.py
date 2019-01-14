@@ -23,12 +23,22 @@ def tran(tensor):
     return tf.transpose(tensor)
 
 
-def dense_from_coo(shape, conns, dtype=tf.float64):
+def dense_from_coo_tf(shape, conns, dtype=tf.float64):
     idxs, weights = conns
     if len(idxs) == 0:
         return tf.zeros(shape, dtype=dtype)
     rows, cols = np.array(idxs).transpose()
     return tf.scatter_nd(tf.stack([rows, cols], -1), tf.convert_to_tensor(weights, preferred_dtype=dtype), shape)
+
+
+def dense_from_coo(shape, conns, dtype=tf.float64):
+    idxs, weights = conns
+    if len(idxs) == 0:
+        return tf.zeros(shape, dtype=dtype)
+    rows, cols = np.array(idxs).transpose()
+    mat = np.zeros(shape)
+    mat[rows, cols] = weights
+    return tf.convert_to_tensor(mat, preferred_dtype=dtype)
 
 
 class RecurrentNet():
