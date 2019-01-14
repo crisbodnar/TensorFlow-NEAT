@@ -1,7 +1,8 @@
 */__py_cache__/
-.pytest_cach/
+.pytest_cache/
 *.pyc
 log.json
 neat.log
 .DS_Store/
 .idea/
+logs/
