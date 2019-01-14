@@ -51,7 +51,8 @@ class RecurrentNet():
                  use_current_activs=False,
                  activation=sigmoid_activation,
                  n_internal_steps=1,
-                 dtype=tf.float64):
+                 dtype=tf.float64,
+                 device='cpu'):
 
         self.use_current_activs = use_current_activs
         self.activation = activation
@@ -62,59 +63,63 @@ class RecurrentNet():
         self.n_hidden = n_hidden
         self.n_outputs = n_outputs
 
-        if n_hidden > 0:
-            self.input_to_hidden = dense_from_coo(
-                (n_hidden, n_inputs), input_to_hidden, dtype=dtype)
-            self.hidden_to_hidden = dense_from_coo(
-                (n_hidden, n_hidden), hidden_to_hidden, dtype=dtype)
-            self.output_to_hidden = dense_from_coo(
-                (n_hidden, n_outputs), output_to_hidden, dtype=dtype)
-            self.hidden_to_output = dense_from_coo(
-                (n_outputs, n_hidden), hidden_to_output, dtype=dtype)
-        self.input_to_output = dense_from_coo(
-            (n_outputs, n_inputs), input_to_output, dtype=dtype)
-        self.output_to_output = dense_from_coo(
-            (n_outputs, n_outputs), output_to_output, dtype=dtype)
+        self.device = device
 
-        if n_hidden > 0:
-            self.hidden_responses = tf.convert_to_tensor(hidden_responses, preferred_dtype=dtype)
-            self.hidden_biases = tf.convert_to_tensor(hidden_biases, preferred_dtype=dtype)
+        with tf.device(device):
+            if n_hidden > 0:
+                self.input_to_hidden = dense_from_coo(
+                    (n_hidden, n_inputs), input_to_hidden, dtype=dtype)
+                self.hidden_to_hidden = dense_from_coo(
+                    (n_hidden, n_hidden), hidden_to_hidden, dtype=dtype)
+                self.output_to_hidden = dense_from_coo(
+                    (n_hidden, n_outputs), output_to_hidden, dtype=dtype)
+                self.hidden_to_output = dense_from_coo(
+                    (n_outputs, n_hidden), hidden_to_output, dtype=dtype)
+            self.input_to_output = dense_from_coo(
+                (n_outputs, n_inputs), input_to_output, dtype=dtype)
+            self.output_to_output = dense_from_coo(
+                (n_outputs, n_outputs), output_to_output, dtype=dtype)
 
-        self.output_responses = tf.convert_to_tensor(output_responses, preferred_dtype=dtype)
-        self.output_biases = tf.convert_to_tensor(output_biases, preferred_dtype=dtype)
+            if n_hidden > 0:
+                self.hidden_responses = tf.convert_to_tensor(hidden_responses, preferred_dtype=dtype)
+                self.hidden_biases = tf.convert_to_tensor(hidden_biases, preferred_dtype=dtype)
 
-        self.reset(batch_size)
+            self.output_responses = tf.convert_to_tensor(output_responses, preferred_dtype=dtype)
+            self.output_biases = tf.convert_to_tensor(output_biases, preferred_dtype=dtype)
+
+            self.reset(batch_size)
 
     def reset(self, batch_size=1):
-        if self.n_hidden > 0:
-            self.activs = tf.zeros((batch_size, self.n_hidden), dtype=self.dtype)
-        else:
-            self.activs = None
-        self.outputs = tf.zeros((batch_size, self.n_outputs), dtype=self.dtype)
+        with tf.device(self.device):
+            if self.n_hidden > 0:
+                self.activs = tf.zeros((batch_size, self.n_hidden), dtype=self.dtype)
+            else:
+                self.activs = None
+            self.outputs = tf.zeros((batch_size, self.n_outputs), dtype=self.dtype)
 
     def activate(self, inputs):
         '''
         inputs: (batch_size, n_inputs)
-
         returns: (batch_size, n_outputs)
         '''
-        inputs = tf.convert_to_tensor(inputs, preferred_dtype=self.dtype)
-        activs_for_output = self.activs
-        if self.n_hidden > 0:
-            for _ in range(self.n_internal_steps):
-                self.activs = self.activation(self.hidden_responses * (
-                    tran(self.input_to_hidden @ tran(inputs)) +
-                    tran(self.hidden_to_hidden @ tran(self.activs)) +
-                    tran(self.output_to_hidden @ tran(self.outputs))) +
-                    self.hidden_biases)
-            if self.use_current_activs:
-                activs_for_output = self.activs
-        output_inputs = (tran(self.input_to_output @ tran(inputs)) +
-                         tran(self.output_to_output @ tran(self.outputs)))
-        if self.n_hidden > 0:
-            output_inputs += tran(self.hidden_to_output @ tran(activs_for_output))
-        self.outputs = self.activation(
-            self.output_responses * output_inputs + self.output_biases)
+        with tf.device(self.device):
+            inputs = tf.convert_to_tensor(inputs, preferred_dtype=self.dtype)
+            activs_for_output = self.activs
+            if self.n_hidden > 0:
+                for _ in range(self.n_internal_steps):
+                    self.activs = self.activation(self.hidden_responses * (
+                        tran(self.input_to_hidden @ tran(inputs)) +
+                        tran(self.hidden_to_hidden @ tran(self.activs)) +
+                        tran(self.output_to_hidden @ tran(self.outputs))) +
+                        self.hidden_biases)
+                if self.use_current_activs:
+                    activs_for_output = self.activs
+            output_inputs = (tran(self.input_to_output @ tran(inputs)) +
+                             tran(self.output_to_output @ tran(self.outputs)))
+            if self.n_hidden > 0:
+                output_inputs += tran(self.hidden_to_output @ tran(activs_for_output))
+            self.outputs = self.activation(
+                self.output_responses * output_inputs + self.output_biases)
         return self.outputs
 
     @staticmethod
