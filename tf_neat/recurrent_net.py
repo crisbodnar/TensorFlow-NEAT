@@ -52,7 +52,7 @@ class RecurrentNet():
                  activation=sigmoid_activation,
                  n_internal_steps=1,
                  dtype=tf.float64,
-                 device='cuda:0'):
+                 device='gpu'):
 
         self.use_current_activs = use_current_activs
         self.activation = activation

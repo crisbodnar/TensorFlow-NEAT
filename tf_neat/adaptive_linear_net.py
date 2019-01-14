@@ -33,7 +33,7 @@ class AdaptiveLinearNet:
         activation=tanh_activation,
         cppn_activation=identity_activation,
         batch_size=1,
-        device="cuda:0",
+        device="gpu",
     ):
 
         with tf.device(device):

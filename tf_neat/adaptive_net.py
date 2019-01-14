@@ -38,7 +38,7 @@ class AdaptiveNet:
                  activation=tanh_activation,
 
                  batch_size=1,
-                 device='cuda:0'):
+                 device='gpu'):
 
         with tf.device(device):
             self.w_ih_node = w_ih_node
