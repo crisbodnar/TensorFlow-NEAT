@@ -17,6 +17,7 @@ import os
 import click
 import gym
 import neat
+import cProfile
 import tensorflow as tf
 
 from tf_neat.multi_env_eval import MultiEnvEvaluator
@@ -77,4 +78,5 @@ def run(n_generations):
 
 
 if __name__ == "__main__":
-    run()  # pylint: disable=no-value-for-parameter
+    # cProfile.run('run()')   # pylint: disable=no-value-for-parameter
+    run()

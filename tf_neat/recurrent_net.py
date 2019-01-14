@@ -67,11 +67,11 @@ class RecurrentNet():
             (n_outputs, n_outputs), output_to_output, dtype=dtype)
 
         if n_hidden > 0:
-            self.hidden_responses = tf.convert_to_tensor(hidden_responses, dtype=dtype)
-            self.hidden_biases = tf.convert_to_tensor(hidden_biases, dtype=dtype)
+            self.hidden_responses = tf.convert_to_tensor(hidden_responses, preferred_dtype=dtype)
+            self.hidden_biases = tf.convert_to_tensor(hidden_biases, preferred_dtype=dtype)
 
-        self.output_responses = tf.convert_to_tensor(output_responses, dtype=dtype)
-        self.output_biases = tf.convert_to_tensor(output_biases, dtype=dtype)
+        self.output_responses = tf.convert_to_tensor(output_responses, preferred_dtype=dtype)
+        self.output_biases = tf.convert_to_tensor(output_biases, preferred_dtype=dtype)
 
         self.reset(batch_size)
 
