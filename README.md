@@ -14,7 +14,7 @@ of the dynamic computation graphs introduced with TensorFlow Eager. TensorFlow N
 We also provide some environments in which to test NEAT and Adaptive HyperNEAT, and a more involved example using the CPPN infrastructure with Adaptive HyperNEAT on a T-maze.
 
 ## Examples
-The following snippet turns a NEAT-Python genome into a recurrent PyTorch network:
+The following snippet turns a NEAT-Python genome into a recurrent TensorFlow network:
 ```
 from tf_neat.recurrent_net import RecurrentNet
 
