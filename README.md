@@ -1,6 +1,7 @@
+[![Build Status](https://travis-ci.org/crisbodnar/TensorFlow-NEAT.svg?branch=master)](https://travis-ci.org/crisbodnar/TensorFlow-NEAT)
+
 # TensorFlow NEAT
 
-[![Build Status](https://travis-ci.org/crisbodnar/TensorFlow-NEAT.svg?branch=master)](https://travis-ci.org/crisbodnar/TensorFlow-NEAT)
 ## Background
 NEAT (NeuroEvolution of Augmenting Topologies) is a popular neuroevolution algorithm, one of the few such algorithms that evolves the architectures of its networks in addition to the weights. For more information, see this research paper: http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf.
 
