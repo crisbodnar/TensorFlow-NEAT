@@ -14,6 +14,7 @@
 
 import json
 import time
+import os
 from pprint import pprint
 
 import numpy as np
@@ -22,6 +23,9 @@ from neat.reporting import BaseReporter
 
 class LogReporter(BaseReporter):
     def __init__(self, fnm, eval_best, eval_with_debug=False):
+        self.dir = os.path.dirname(fnm)
+        if not os.path.exists(os.path.dirname(fnm)):
+            os.makedirs(self.dir)
         self.log = open(fnm, "a")
         self.generation = None
         self.generation_start_time = None
@@ -30,6 +34,8 @@ class LogReporter(BaseReporter):
         self.eval_best = eval_best
         self.eval_with_debug = eval_with_debug
         self.log_dict = {}
+
+
 
     def start_generation(self, generation):
         self.log_dict["generation"] = generation
