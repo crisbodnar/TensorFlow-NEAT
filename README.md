@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/crisbodnar/TensorFlow-NEAT.svg?branch=master)](https://travis-ci.org/crisbodnar/TensorFlow-NEAT)
+[![Build Status](https://travis-ci.org/crisbodnar/TensorFlow-NEAT.svg?branch=master)](https://travis-ci.org/crisbodnar/TensorFlow-NEAT) [![codecov](https://codecov.io/gh/crisbodnar/TensorFlow-NEAT/branch/master/graph/badge.svg)](https://codecov.io/gh/crisbodnar/TensorFlow-NEAT)
+
 
 # TensorFlow NEAT
 
