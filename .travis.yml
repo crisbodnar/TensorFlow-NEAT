@@ -5,8 +5,9 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install codecov
+  - pip install pytest-cov
 # command to run tests
 script:
-  - pytest
+  - pytest --cov=./
 after_success:
   - codecov
