@@ -3,7 +3,7 @@ import copy
 import numpy as np
 import itertools
 from math import factorial
-from tensorflow_neat.recurrent_net import RecurrentNet
+from tf_neat.recurrent_net import RecurrentNet
 
 #encodes a substrate of input and output coords with a cppn, adding 
 #hidden coords along the 
@@ -71,7 +71,8 @@ class ESNetwork:
                     
         # Visualize the network?
         if filename is not None:
-            draw_es_nd(coords_to_id, draw_connections, filename)
+            print(filename)
+            #draw_es_nd(coords_to_id, draw_connections, filename)
                     
         return RecurrentNet.create_from_es(input_nodes, output_nodes, node_evals)
         
@@ -419,4 +420,4 @@ def query_torch_cppn(coord1, coord2, outgoing, cppn, max_weight=5.0):
     if abs(w) > 0.2:  # If abs(weight) is below threshold, treat weight as 0.0.
         return w * max_weight
     else:
-return 0.0
+        return 0.0
