@@ -84,7 +84,7 @@ class ESNetwork:
         temp = []
 
         def loop(pp):
-            if pp is not None and all(child is not None for child in pp.cs):
+            if pp is not None and len(pp.cs) > 0:
                 if len(pp.cs) > 0:
                     for i in range(0, pp.num_children):
                         loop(pp.cs[i])
@@ -107,7 +107,9 @@ class ESNetwork:
         
         root = nDimensionTree(root_coord, 1.0, 1)
         return root
-
+    # my personal extension to the algo, we use our n-dimensional subdivision tree instead of a quadtree
+    # you will notice some extra looping to account for n-dimensional functionality but one could choose a dimension
+    # 
     def division_initialization_nd(self, coord, outgoing):
         root = self.root_tree
         q = [root]
@@ -118,14 +120,15 @@ class ESNetwork:
             p.divide_childrens()
             for c in p.cs:
                 c.w = query_torch_cppn(coord, c.coord, outgoing, self.cppn, self.max_weight)
-            
+                print(c.w)
             if (p.lvl < self.initial_depth) or (p.lvl < self.max_depth and self.variance(p) > self.division_threshold):
                 for child in p.cs:
                     q.append(child)
 
         return root
 
-
+    # this code is from the pureples repo, i have included it so that you can utilize the
+    # more explicit and 2d specific methods, they should run a bit faster
     # Initialize the quadtree by dividing it in appropriate quads.
     def division_initialization(self, coord, outgoing):
         root = QuadPoint(0.0, 0.0, 1.0, 1.0)
@@ -147,10 +150,14 @@ class ESNetwork:
 
         return root
     # n-dimensional pruning and extradition
+    # the extension to use the nd tree here again 
     def prune_all_the_dimensions(self, coord, p, outgoing):
         for c in p.cs:
             child_array = []
-            if self.variance(c) > self.variance_threshold:
+            # this is a bit that is inconsistent in the original implementation
+            # its rather pointless to honor the initial depth in division initialization 
+            # and ignor it here, hence the or statement and extra condition for that
+            if self.variance(c) > self.variance_threshold or p.lvl < self.initial_depth:
                 self.prune_all_the_dimensions(coord, c, outgoing)
             else:
                 c_len = len(child_array)
