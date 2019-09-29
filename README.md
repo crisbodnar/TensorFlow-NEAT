@@ -12,7 +12,7 @@ Adaptive HyperNEAT is an extension to HyperNEAT which indirectly encodes both th
 
 ## About
 Because TensorFlow did not support dynamic computation graphs, there was no mature TensorFlow implementation of NEAT. This project makes use
-of the dynamic computation graphs introduced with TensorFlow Eager. TensorFlow NEAT builds upon [PyTorch-NEAT](https://github.com/uber-research/PyTorch-NEAT) and [NEAT-Python](https://github.com/CodeReclaimers/neat-python) by providing some functions which can turn a NEAT-Python genome into either a recurrent TensorFlow network or a TensorFlow CPPN for use in HyperNEAT or Adaptive HyperNEAT.
+of the dynamic computation graphs introduced with TensorFlow Eager. TensorFlow NEAT builds upon [PyTorch-NEAT](https://github.com/uber-research/PyTorch-NEAT) and [NEAT-Python](https://github.com/CodeReclaimers/neat-Python) by providing some functions which can turn a NEAT-Python genome into either a recurrent TensorFlow network or a TensorFlow CPPN for use in HyperNEAT or Adaptive HyperNEAT.
 We also provide some environments in which to test NEAT and Adaptive HyperNEAT, and a more involved example using the CPPN infrastructure with Adaptive HyperNEAT on a T-maze.
 
 ## Examples
@@ -70,13 +70,37 @@ fitness = evaluator.eval_genome(genome)
 This allows multiple environments to run in parallel for efficiency.
 
 A simple example using NEAT to solve the Cartpole can be run like this:
+
+Linux, should always work with VirtualEnv with Python 3. May not work if default Python version used is 2 like Ubuntu 16.04:
+
+From TensorFlow-NEAT root directory
 ```
-python3 -m examples.simple.main
+cd examples/simple
+./main
+```
+
+My guess for Windows, since I don't have it anymore.
+
+Windows:
+```
+python3 main
 ```
 
 And a simple example using Adaptive HyperNEAT to partially solve a T-maze can be run like this:
+
+Linux, should always work with VirtualEnv with Python 3. May not work if default Python version used is 2 like Ubuntu 16.04:
+
+From TensorFlow-NEAT root directory
 ```
-python3 -m examples.adaptive.main
+cd examples/adaptive
+./main
+```
+
+My guess for Windows, since I don't have it anymore.
+
+Windows:
+```
+python3 main
 ```
 
 To run the tests run from the root directory:
