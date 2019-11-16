@@ -17,9 +17,9 @@
 
 import tensorflow as tf
 
-from .activations import identity_activation, tanh_activation
-from .cppn import clamp_weights_, create_cppn, get_coord_inputs
-from .helpers import expand
+from activations import identity_activation, tanh_activation
+from cppn import clamp_weights_, create_cppn, get_coord_inputs
+from helpers import expand
 
 
 class AdaptiveLinearNet:

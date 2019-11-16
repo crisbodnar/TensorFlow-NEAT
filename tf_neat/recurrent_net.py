@@ -16,7 +16,7 @@
 
 import numpy as np
 import tensorflow as tf
-from .activations import sigmoid_activation
+from activations import sigmoid_activation
 
 
 def tran(tensor):

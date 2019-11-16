@@ -3,7 +3,7 @@ import copy
 import numpy as np
 import itertools
 from math import factorial
-from tf_neat.recurrent_net import RecurrentNet
+from recurrent_net import RecurrentNet
 
 #encodes a substrate of input and output coords with a cppn, adding 
 #hidden coords along the 
@@ -422,7 +422,7 @@ def query_torch_cppn(coord1, coord2, outgoing, cppn, max_weight=5.0):
             master["leaf_one_"+str(x)] = np.array(coord2[x])
             master["leaf_two_"+str(x)] = np.array(coord1[x])
     #master = np.array(master)
-    w = float(cppn(master)[0])
+    w = cppn(master)[0]
     
     if abs(w) > 0.2:  # If abs(weight) is below threshold, treat weight as 0.0.
         return w * max_weight
