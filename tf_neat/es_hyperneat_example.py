@@ -27,7 +27,7 @@ def make_env():
 def make_net(genome, config, bs):
     #start by setting up a substrate for this bad cartpole boi
     params = {"initial_depth": 2,
-            "max_depth": 4,
+            "max_depth": 2,
             "variance_threshold": 0.00013,
             "band_threshold": 0.00013,
             "iteration_level": 3,
@@ -77,6 +77,7 @@ def run(n_generations):
     def eval_genomes(genomes, config):
         for _, genome in genomes:
             genome.fitness = evaluator.eval_genome(genome, config)
+            print(genome.fitness)
 
     pop = neat.Population(config)
     stats = neat.StatisticsReporter()

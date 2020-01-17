@@ -3,6 +3,7 @@ import copy
 import numpy as np
 import itertools
 from math import factorial
+import tensorflow as tf
 from recurrent_net import RecurrentNet
 
 #encodes a substrate of input and output coords with a cppn, adding 
@@ -120,7 +121,7 @@ class ESNetwork:
             p.divide_childrens()
             for c in p.cs:
                 c.w = query_torch_cppn(coord, c.coord, outgoing, self.cppn, self.max_weight)
-                print(c.w)
+            print(p.lvl)
             if (p.lvl < self.initial_depth) or (p.lvl < self.max_depth and self.variance(p) > self.division_threshold):
                 for child in p.cs:
                     q.append(child)
@@ -143,7 +144,6 @@ class ESNetwork:
 
             for c in p.cs:
                 c.w = query_cppn(coord, (c.x, c.y), outgoing, self.cppn, self.max_weight)
-            print(self.variance(p))
             if (p.lvl < self.initial_depth) or (p.lvl < self.max_depth and self.variance(p) > self.division_threshold):
                 for child in p.cs:
                     q.append(child)
@@ -421,10 +421,7 @@ def query_torch_cppn(coord1, coord2, outgoing, cppn, max_weight=5.0):
         else:
             master["leaf_one_"+str(x)] = np.array(coord2[x])
             master["leaf_two_"+str(x)] = np.array(coord1[x])
-    #master = np.array(master)
-    w = cppn(master)[0]
-    
-    if abs(w) > 0.2:  # If abs(weight) is below threshold, treat weight as 0.0.
-        return w * max_weight
-    else:
-        return 0.0
+    activs = tf.Session().run(cppn(master))
+    #print(activs)
+    w = activs
+    return w

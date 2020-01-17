@@ -18,9 +18,9 @@ import tensorflow as tf
 import numpy as np
 from neat.graphs import required_for_output
 
-from activations import str_to_activation
-from aggregations import str_to_aggregation
-from helpers import expand
+from .activations import str_to_activation
+from .aggregations import str_to_aggregation
+from .helpers import expand
 
 
 class Node:
@@ -97,7 +97,7 @@ class Node:
             self.activs = self.activate(xs, shape)
         return self.activs
 
-    def __call__(self, **inputs):
+    def __call__(self, inputs={}):
         assert self.leaves is not None
         assert inputs
         shape = list(inputs.values())[0].shape
@@ -267,22 +267,15 @@ def get_coord_inputs(in_coords, out_coords, batch_size=None):
 
     return (x_out, y_out), (x_in, y_in)
 
-def get_coord_inputs_nd(in_coords, out_coords, batch_size=None):
+def get_nd_coord_inputs(in_coords, out_coords):
     n_in = in_coords.shape[0]
     n_out = out_coords.shape[0]
 
-    if batch_size is not None:
-        in_coords = expand(tf.expand_dims(in_coords, 0), (batch_size, n_in, 2))
-        out_coords = expand(tf.expand_dims(out_coords, 0), (batch_size, n_out, 2))
+    dims = in_coords.shape[1]
 
-        x_out = expand(tf.expand_dims(out_coords[:, :, 0], 2), (batch_size, n_out, n_in))
-        y_out = expand(tf.expand_dims(out_coords[:, :, 1], 2), (batch_size, n_out, n_in))
-        x_in = expand(tf.expand_dims(in_coords[:, :, 0], 1), (batch_size, n_out, n_in))
-        y_in = expand(tf.expand_dims(in_coords[:, :, 1], 1), (batch_size, n_out, n_in))
-    else:
-        x_out = expand(tf.expand_dims(out_coords[:, 0], 1), (n_out, n_in))
-        y_out = expand(tf.expand_dims(out_coords[:, 1], 1), (n_out, n_in))
-        x_in = expand(tf.expand_dims(in_coords[:, 0], 0), (n_out, n_in))
-        y_in = expand(tf.expand_dims(in_coords[:, 1], 0), (n_out, n_in))
+    arrays = {}
+    for x in range(dims):
+        arrays[str(x) + "_out"] = expand(tf.expand_dims(out_coords[:, x], 1), (n_out, n_in))
+        arrays[str(x) + "_in"] = expand(tf.expand_dims(in_coords[:, x], 0), (n_out, n_in))
 
-    return (x_out, y_out), (x_in, y_in)
+    return arrays
