@@ -16,7 +16,7 @@
 
 import numpy as np
 import tensorflow as tf
-from .activations import sigmoid_activation
+from activations import sigmoid_activation
 
 
 def tran(tensor):
@@ -205,7 +205,67 @@ class RecurrentNet():
 
             idxs.append((o_idx, i_idx))  # to, from
             vals.append(conn.weight)
+    @staticmethod
+    def create_from_es(in_nodes, out_nodes, node_evals, batch_size=1, activation=sigmoid_activation,
+               prune_empty=False, use_current_activs=False, n_internal_steps=1):
+        hidden_responses = [1.0 for k in range(len(node_evals)-(len(in_nodes)+len(out_nodes)))]
+        output_responses = [1.0 for k in range(len(out_nodes))]
 
+        hidden_biases = [1.0 for k in range(len(node_evals)-(len(in_nodes)+len(out_nodes)))]
+        output_biases = [1.0 for k in range(len(out_nodes))]
+
+        input_key_to_idx = {k: i for i, k in enumerate(in_nodes)}
+        output_key_to_idx = {k: i for i, k in enumerate(out_nodes)}
+        hidden_key_to_idx = {}
+
+        hidden_idx = -1
+
+        def key_to_idx(key, hid_idx):
+            if key in in_nodes:
+                return input_key_to_idx[key]
+            elif key in out_nodes:
+                return output_key_to_idx[key]
+            elif key in hidden_key_to_idx.keys():
+                return hidden_key_to_idx[key]
+            else:
+                hid_idx += 1
+                hidden_key_to_idx[key] = hid_idx
+                return hid_idx
+
+        input_to_hidden = ([], [])
+        hidden_to_hidden = ([], [])
+        output_to_hidden = ([], [])
+        input_to_output = ([], [])
+        hidden_to_output = ([], [])
+        output_to_output = ([], [])
+
+        # this could be optimized by first checking in out or hidden 
+        # of ikey but for now this is how im doing it to keep it looking familiar
+        for conn in node_evals:
+            #pruning is done in the eshyperneat class
+            i_key = conn[0]
+            for x in conn[5]:
+                o_key = x[0]
+                i_idx = key_to_idx(i_key, hidden_idx)
+                o_idx = key_to_idx(o_key, hidden_idx)
+                add_conn = True
+                if i_key in in_nodes and o_key not in out_nodes:
+                    idxs, vals = input_to_hidden
+                elif i_key not in in_nodes and i_key not in out_nodes and o_key not in in_nodes and o_key not in out_nodes:
+                    idxs, vals = hidden_to_hidden
+                elif i_key in out_nodes and o_key not in out_nodes and o_key not in in_nodes:
+                    idxs, vals = output_to_hidden
+                elif i_key in in_nodes and o_key in out_nodes:
+                    idxs, vals = input_to_output
+                elif i_key not in in_nodes and i_key not in out_nodes and o_key in out_nodes:
+                    idxs, vals = hidden_to_output
+                elif i_key in out_nodes and o_key in out_nodes:
+                    idxs, vals = output_to_output
+                else:
+                    add_conn = False
+                if add_conn == True:    
+                    idxs.append((o_idx, i_idx))  # to, from
+                    vals.append(float(x[1]))
         return RecurrentNet(n_inputs, n_hidden, n_outputs,
                             input_to_hidden, hidden_to_hidden, output_to_hidden,
                             input_to_output, hidden_to_output, output_to_output,

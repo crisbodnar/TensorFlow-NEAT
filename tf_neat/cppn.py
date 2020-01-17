@@ -97,14 +97,13 @@ class Node:
             self.activs = self.activate(xs, shape)
         return self.activs
 
-    def __call__(self, **inputs):
+    def __call__(self, inputs={}):
         assert self.leaves is not None
         assert inputs
         shape = list(inputs.values())[0].shape
         self.reset()
         for name in self.leaves.keys():
-            assert (inputs[name].shape == shape), \
-                "Wrong activs shape for leaf {}, {} != {}".format(name, inputs[name].shape, shape)
+            assert inputs[name].shape == shape,"Wrong activs shape for leaf {}, {} != {}".format(name, inputs[name].shape, shape)
             self.leaves[name].set_activs(inputs[name])
         return self.get_activs(shape)
 
@@ -267,3 +266,16 @@ def get_coord_inputs(in_coords, out_coords, batch_size=None):
         y_in = expand(tf.expand_dims(in_coords[:, 1], 0), (n_out, n_in))
 
     return (x_out, y_out), (x_in, y_in)
+
+def get_nd_coord_inputs(in_coords, out_coords):
+    n_in = in_coords.shape[0]
+    n_out = out_coords.shape[0]
+
+    dims = in_coords.shape[1]
+
+    arrays = {}
+    for x in range(dims):
+        arrays[str(x) + "_out"] = expand(tf.expand_dims(out_coords[:, x], 1), (n_out, n_in))
+        arrays[str(x) + "_in"] = expand(tf.expand_dims(in_coords[:, x], 0), (n_out, n_in))
+
+    return arrays

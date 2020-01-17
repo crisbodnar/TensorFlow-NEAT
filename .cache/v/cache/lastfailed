@@ -1,0 +1,9 @@
+{
+  "tests/test_adaptive_linear.py": true,
+  "tests/test_cppn.py": true,
+  "tests/test_maze.py": true,
+  "tests/test_recurrent.py": true,
+  "tests/test_strict_t_maze.py": true,
+  "tests/test_t_maze.py": true,
+  "tests/test_turning_t_maze.py": true
+}
