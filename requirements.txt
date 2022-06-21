@@ -1,5 +1,5 @@
 neat-python==0.92
-numpy==1.14.3
+numpy==1.22.0
 gym==0.10.5
 click==6.7
 tensorflow==1.12.2
